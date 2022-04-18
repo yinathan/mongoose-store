@@ -9,7 +9,7 @@ const mongoose = require("mongoose")
 app.use(express.urlencoded({ extended: true}))
 app.use(methodOverride("_method"))
 
-app.use("/store", productController)
+app.use("/products", productController)
 
 
 // Mongoose connection
