@@ -1,17 +1,16 @@
 const express = require("express")
 const app = express()
-const PORT = process.env.PORT || 3001
-const methodOverride = require("method-override")
-const productsController = require("./controllers/products");
-
-const mongoose = require("mongoose")
 require("dotenv").config()
+const methodOverride = require("method-override")
+const productController = require("./controllers/products.js");
+const mongoose = require("mongoose")
 
 // Middleware
 app.use(express.urlencoded({ extended: true}))
 app.use(methodOverride("_method"))
 
-app.use("/products", productsController)
+app.use("/store", productController)
+
 
 // Mongoose connection
 mongoose.connect(process.env.DATABASE_URL, {
@@ -20,8 +19,9 @@ mongoose.connect(process.env.DATABASE_URL, {
 });
 
 const db = mongoose.connection;
-db.on("error", (err) => console.log(err.message + "Mongo is not running"))
-db.on("connected", () => console.log("Mongoose Connected"))
-db.on("disconnected", () => console.log("Mongo Disconnected"))
+db.on("error", (err) => console.log(err.message + " is mongo not running?"));
+db.on("connected", () => console.log("mongoose connected"));
+db.on("disconnected", () => console.log("mongo disconnected"));
 
-app.listen(PORT, () => console.log("port is running"))
+const PORT = process.env.PORT
+app.listen(PORT, () => console.log(`port is working`))

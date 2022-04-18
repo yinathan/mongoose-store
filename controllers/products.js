@@ -4,18 +4,27 @@ const productSeedData = require("../models/seed.js")
 const productRouter = express.Router()
 
 // Index
-
+productRouter.get("/", (req, res) => {
+    console.log("working")
+    res.send("yo") })
+    // Product.find({}, (err, allProducts) => {
+    //     res.render("index.ejs", {product: allProducts})
+    // })
+// })
 // New
-
+productRouter.get("/new", (req, res) => {
+    console.log("new item created")
+    res.send("created new item")
+})
 // Delete
 
 // Update
 
 
 // Create
-productRouter.post("/products", (req, res) => {
-  res.send("received")
-}) 
+// productRouter.post("/", (req, res) => {
+//   res.send("received")
+// }) 
 
 // Edit
 
@@ -28,4 +37,4 @@ productRouter.post("/products", (req, res) => {
 
 
 
-module.exports = productRouter
+module.exports = productRouter;
