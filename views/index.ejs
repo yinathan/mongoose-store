@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
     <title>Store Products</title>
 </head>
 <body>
     <h1>Products</h1>
+    <button onclick="location.href='http://localhost:3000/products/new'" type="button">
+        Add a Product</button>
+    <div class="container">
     <ul>
         <% products.forEach(product => { %>
             <li>
                 <h3><%=product.name%></h3>
+                <a href="/products/<%=product.id%>"><img src=<%=product.img%>></a>
             </li>
             
        <% }) %>
     </ul>
+    </div>
 </body>
 </html>

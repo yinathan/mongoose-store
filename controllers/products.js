@@ -19,8 +19,7 @@ productRouter.get("/", (req, res) => {
 })
 // New
 productRouter.get("/new", (req, res) => {
-    console.log("new item created")
-    res.send("created new item")
+    res.render("new.ejs")
 })
 // Delete
 productRouter.delete("/:id", (req, res) => {
@@ -32,14 +31,36 @@ productRouter.delete("/:id", (req, res) => {
 
 
 // Create
-// productRouter.post("/", (req, res) => {
-//   res.send("received")
-// }) 
+productRouter.post("/", (req, res) => {
+  Product.create(req.body, (err, createdProduct) => {
+      if(err) {
+          console.log(err)
+          res.send(err)
+      } else {
+          res.redirect("/products")
+      }
+  })
+}) 
 
 // Edit
+productRouter.get("/:id/edit", (req, res) => {
+    Product.findById(req.params.id, (err, product) => {
+        res.render("edit.ejs", {product})
+    })
+})
 
+productRouter.put("/:id", (req, res) => {
+    Product.findByIdAndUpdate(req.params.id, req.body, (err, updatedProduct) => {
+        if(err) console.log(err)
+        res.redirect(`/products/${req.params.id}`)
+    })
+})
 // Show
-
+productRouter.get("/:id", (req, res) => {
+  Product.findById(req.params.id, (err, product) => {
+    res.render("show.ejs", { product });
+  });
+});
 
 
 
