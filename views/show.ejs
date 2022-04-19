@@ -12,21 +12,51 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        h1{
+            text-align: center;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+        }
+        .buttons {
+            display:flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-flow: row;
+            margin-top: 20px;
+        }
+    </style>
+    <button onclick="location.href='http://localhost:3000/products'" type="button">
+        Return to Products Page</button>
+
     <div class="container">
 
         <h1><%=product.name%></h1>
         <img src="<%=product.img%>">
-        <h4>About this product: </br> <%=product.description%></h4>
-        <h3>Price: <%=product.price%></h3>
-        <h3>Quantity: <%=product.qty%></h3>
+        <div class="buttons">
+            <form action="/products/product._id/?_method=PUT" method="POST">
+            <button onclick="location.href='http://localhost:3000/products/<%=product.id%>/edit'" type="button">
+                Edit this Product</button>
+                </form>
+            <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                <button onclick="location.href='http://localhost:3000/products/<%=product.id%>'" type="submit">
+                    Delete this Product</button>
+                    </form>
+        </div>
+        <div>
+        <h2>About this product: </h2> </br> <h4><%=product.description%></h4>
+        </div>
+        <h3>Price: $ <%=product.price%>.00</h3>
+        <h3>Quantity: <%=product.qty%> Remaining</h3>
     </div>
-    <button onclick="location.href='http://localhost:3000/products/<%=product.id%>/edit'" type="button">
-        Edit this Product</button>
-    <button onclick="location.href='http://localhost:3000/products'" type="button">
-        Return to Products Page</button>
-    <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
-        <button onclick="location.href='http://localhost:3000/products/<%=product.id%>'" type="submit">
-            Delete this Product</button>
+    
+    
+ 
     </form>
 </body>
 </html>

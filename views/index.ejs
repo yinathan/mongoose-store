@@ -12,17 +12,80 @@
     <title>Store Products</title>
 </head>
 <body>
-    <h1>Products</h1>
-    <button onclick="location.href='http://localhost:3000/products/new'" type="button">
-        Add a Product</button>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: solid 5px #9B4DCA;
+            flex-flow: row wrap;
+            margin-top: 30px;
+        }
+        li {
+            list-style: none;
+        }
+        .name {
+            text-align: center;
+        }
+        img {
+            width: 250px;
+            height: 250px;
+            border-radius: 20%;
+            box-shadow: 3px 3px 3px 3px rgb(217, 37, 160);
+        }
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 80px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+        .welcome {
+            margin-top: 0px;
+            padding-top: 0px;
+        }
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+        }
+      
+    </style>
+
+
+    <div class="head">
+        <div>
+    
+        <h1>Products</h1>
+        </div>
+        <div>
+            <h5 class="welcome">Welcome to Products! We sell bins, beans, </br>
+                and bones!(but sometimes other stuff too)</h5>
+        </div>  
+        <div>
+   
+        <button class="create" onclick="location.href='http://localhost:3000/products/new'" type="button">
+            Add a Product</button>
+        </div>
+        </div>
     <div class="container">
-    <ul>
+    
         <% products.forEach(product => { %>
+            <div>
+            <ul>
             <li>
-                <h3><%=product.name%></h3>
+                <h3 class="name"><%=product.name%></h3>
                 <a href="/products/<%=product.id%>"><img src=<%=product.img%>></a>
             </li>
-            
+            </ul>
+            </div>  
        <% }) %>
     </ul>
     </div>
