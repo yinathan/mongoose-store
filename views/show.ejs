@@ -52,7 +52,12 @@
         <h2>About this product: </h2> </br> <h4><%=product.description%></h4>
         </div>
         <h3>Price: $ <%=product.price%>.00</h3>
-        <h3>Quantity: <%=product.qty%> Remaining</h3>
+        <% if (product.qty > 0) { %>
+            <h3 id="quantity">Quantity: <%=product.qty%> Remaining</h3>
+            <button onclick="<%= product.qty = product.qty - 1 %>">Buy Now</button>
+        <% } else { %>
+            <h3>OUT OF STOCK</h3>
+        <% } %>
     </div>
     
     
